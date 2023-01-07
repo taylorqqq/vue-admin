@@ -1,18 +1,32 @@
 import { RouteRecordRaw } from "vue-router";
 
-const routes = [
+const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Layout",
-    component: () => import("../components/layout/index.vue"),
+    component: () => import("@/components/layout/index.vue"),
     children: [
       {
         path: "/home",
         name: "Home",
-        component: () => import("../views/Home/index.vue"),
+        component: () => import("@/views/Home/index.vue"),
       },
     ],
   },
-] as RouteRecordRaw[];
+];
+// const routes = [
+//   {
+//     path: "/",
+//     name: "Layout",
+//     component: () => import("@/components/layout/index.vue"),
+//     children: [
+//       {
+//         path: "/home",
+//         name: "Home",
+//         component: () => import("@/views/Home/index.vue"),
+//       },
+//     ],
+//   },
+// ] as RouteRecordRaw[];
 
 export default routes;
