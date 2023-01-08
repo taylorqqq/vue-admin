@@ -7,3 +7,11 @@ import { ref } from "vue";
 </script>
 
 <style lang="less" scoped></style>
+
+<script lang="ts">
+export default {
+  route: {
+    path: "/home",
+  },
+};
+</script>

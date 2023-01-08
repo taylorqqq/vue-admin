@@ -19,7 +19,7 @@
         ]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/router/autoLoad.ts", "src/router/autoLoad.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/router/autoLoad.ts", "src/router/autoLoad.ts", "src/components/layout/.vue.ts"],
   "exclude": [
     "node_modules",
     "dist"
