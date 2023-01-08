@@ -1,10 +1,17 @@
 const layouts = import.meta.globEager("../components/layout/*.vue"); // vite插件获取所有的layout组件
 import { RouteRecordRaw } from "vue-router";
 
+// 获取路由
 // Object.entries  将对象转换为数组
-Object.entries(layouts).forEach(([path, component]) => {
-  const route = getRouteByModule(path, component);
-});
+function getRoutes() {
+  const layoutRoutes: Array<RouteRecordRaw> = [];
+  Object.entries(layouts).forEach(([path, component]) => {
+    const route = getRouteByModule(path, component);
+    layoutRoutes.push(route);
+  });
+
+  return layoutRoutes;
+}
 
 function getRouteByModule(
   path: string | any,
@@ -32,6 +39,4 @@ function getRouteByModule(
   return route;
 }
 
-const layoutRoutes: Array<RouteRecordRaw> = [];
-
-export default layoutRoutes;
+export default getRoutes();
