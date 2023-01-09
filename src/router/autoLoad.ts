@@ -1,4 +1,4 @@
-const layouts = import.meta.globEager("../components/layout/*.vue"); // vite插件获取所有的layout组件
+const layouts = import.meta.globEager("../views/layout/*.vue"); // vite插件获取所有的layout组件
 const views = import.meta.globEager("../views/**/*.vue"); // vite插件获取所有的views组件
 import { RouteRecordRaw } from "vue-router";
 
@@ -26,23 +26,29 @@ function getRouteByModule(
   // 不保留 /
   //   console.log(path.replace(/.+layout\/|\.vue/gi, ""));
 
-  const name = path.replace(/.+layout\/|\.vue/gi, "");
+  let name = path.replace(/.+layout\/|\.vue/gi, "");
+  // 取最后一个/后面的字符串
+  name = name.substring(name.lastIndexOf("/") + 1);
   const pathUrl = name.toLowerCase();
 
   // 用js字符串和数组的方法匹配路径
   //   console.log(path.split("/").pop().split(".")[0]);
   //   const name = path.split("/").pop().split(".")[0];
-
   const route = {
     name: name.replace("/", "."),
     path: `/${pathUrl}`,
     component: component.default,
   } as RouteRecordRaw;
 
-  let obj = Object.assign(route, { component: component.default?.route });
+  // let obj = Object.assign(route, { component: component.default?.route });
 
-  return route;
-  return Object.assign(route, obj);
+  // return route;
+  return {
+    name: name.replace("/", "."),
+    path: `/${pathUrl}`,
+    component: component.default,
+  } as RouteRecordRaw;
+  // return Object.assign(route, obj);
 }
 
 function getRouteChildRen(layoutRoute: RouteRecordRaw | any) {
@@ -51,6 +57,7 @@ function getRouteChildRen(layoutRoute: RouteRecordRaw | any) {
     // if (path.includes(`../views/${layoutRoute.name as string}`)) {
     //   const route = getRouteByModule(path, component);
     //   children.push(route);
+    //   console.log(route);
     // }
     const route = getRouteByModule(path, component);
     children.push(route);
